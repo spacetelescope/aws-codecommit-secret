@@ -46,8 +46,12 @@ resource "aws_iam_policy" "codecommit_secrets_setup_policy" {
         "iam:DeleteRole",
         "iam:CreatePolicy",
         "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:ListAttachedRolePolicies",
         "iam:DeletePolicy",
         "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
         "iam:ListInstanceProfilesForRole"
       ],
       "Effect": "Allow",
