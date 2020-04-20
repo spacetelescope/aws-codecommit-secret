@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "secrets_repo_decrypt_policy" {
-  name = "${var.cluster_name}-secrets-decrypt"
+  name = "${var.repo_name}-secrets-decrypt"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -22,7 +22,7 @@ EOF
 }
 
 resource "aws_iam_role" "secrets_repo_decrypt_role" {
-  name = "${var.cluster_name}-secrets-decrypt"
+  name = "${var.repo_name}-secrets-decrypt"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

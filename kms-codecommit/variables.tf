@@ -2,6 +2,6 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "cluster_name" {
+variable "repo_name" {
   default = "<change-this-in-tfvars>"
 }

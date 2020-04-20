@@ -1,5 +1,5 @@
 resource "aws_kms_key" "sops_key" {
-  description             = "Encryption key for hubploy secrets in CodeCommit repo ${var.cluster_name}-secrets"
+  description             = "Encryption key for hubploy secrets in CodeCommit repo ${var.repo_name}-secrets"
 }
 
 resource "local_file" "sops-config" {
