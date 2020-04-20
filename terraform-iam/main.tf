@@ -49,7 +49,8 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
       "iam:DeletePolicy",
       "iam:AttachRolePolicy",
       "iam:DetachRolePolicy",
-      "iam:ListInstanceProfilesForRole"
+      "iam:ListInstanceProfilesForRole",
+      "iam:UpdateAssumeRolePolicy"
     ]
     resources = ["*"]
   }
