@@ -28,6 +28,8 @@ decrypt and update secrets.
 
 [![asciicast](https://asciinema.org/a/322006.svg)](https://asciinema.org/a/322006)
 
+More detailed usage information is [provided below](#using-a-repo-for-secrets)
+
 ## Setting up the infrastructure
 
 The repo sets up the following:
