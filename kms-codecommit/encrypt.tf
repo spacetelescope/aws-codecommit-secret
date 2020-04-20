@@ -5,7 +5,7 @@ resource "aws_iam_policy" "secrets_repo_encrypt_policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": ["codecommit:GitPush"],
+      "Action": ["codecommit:GitPull", "codecommit:GitPush"],
       "Effect": "Allow",
       "Sid": "gitpush",
       "Resource": ["${aws_codecommit_repository.secrets_repo.arn}"]
