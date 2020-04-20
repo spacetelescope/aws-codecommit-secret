@@ -47,6 +47,7 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
       "iam:ListPolicyVersions",
       "iam:ListAttachedRolePolicies",
       "iam:DeletePolicy",
+      "iam:CreatePolicyVersion",
       "iam:AttachRolePolicy",
       "iam:DetachRolePolicy",
       "iam:ListInstanceProfilesForRole",
