@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
 }
 
 resource "aws_iam_policy" "codecommit_secrets_setup_policy" {
-  name = "${var.repo_name}-secrets-setup"
+  name = "${var.repo_name}-setup"
   policy = data.aws_iam_policy_document.codecommit_secrets_setup_policy_document.json
 }
 
@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "codecommit_secrets_role_assumption_policy_docume
 }
 
 resource "aws_iam_role" "codecommit_secrets_setup_role" {
-  name = "${var.repo_name}-secrets-setup-role"
+  name = "${var.repo_name}-setup"
   assume_role_policy = data.aws_iam_policy_document.codecommit_secrets_role_assumption_policy_document.json
 }
 

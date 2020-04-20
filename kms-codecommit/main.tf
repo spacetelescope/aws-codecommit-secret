@@ -12,6 +12,6 @@ provider "template" {
 }
 
 resource "aws_codecommit_repository" "secrets_repo" {
-  repository_name = "${var.repo_name}-secrets"
+  repository_name = ${var.repo_name}
   description     = "kms encrypted secrets for JupyterHub deployment"
 }

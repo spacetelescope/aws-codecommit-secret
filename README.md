@@ -79,7 +79,7 @@ Here is how you can set up these roles.
 
 5. When completed, this should have created an IAM role with just enough
    permissions to run the *main* module in `kms-codecommit`. The role is named
-   `<repo-name>-secrets-setup-role`, and will be present in the output of the
+   `<repo-name>-setup`, and will be present in the output of the
    previous `terraform apply` command.
 
 
@@ -119,8 +119,8 @@ Now that we have a role for setting up KMS + CodeCommit, we can do so!
    For example,
 
    ```bash
-   awsudo arn:aws:iam::<account-id>:role/<your-repo-name>-secrets-setup-role terraform apply -var-file=your-vars.tfvars
+   awsudo arn:aws:iam::<account-id>:role/<your-repo-name>-setup terraform apply -var-file=your-vars.tfvars
    ```
 5. This should hopefully run to completion, and set up CodeCommit, KMS and appropriate IAM roles.
    It should produce a `.sops.yaml` file that can be used with your new repo for appropriate
-   encryption with [sops](https://github.com/mozilla/sops)
+   encryption with [sops](https://github.com/mozilla/sops).
