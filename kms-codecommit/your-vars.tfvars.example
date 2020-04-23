@@ -1,2 +1,10 @@
 region = "us-east-1"
 repo_name = "<change-this>"
+
+encrypt_allowed_users = [
+  "arn:aws:iam::162808325377:user/yuvipanda",
+]
+
+decrypt_allowed_users = [
+  "arn:aws:iam::162808325377:user/yuvipanda",
+]

@@ -1,46 +1,51 @@
-resource "aws_iam_policy" "secrets_repo_encrypt_policy" {
-  name = "${var.repo_name}-encrypt"
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": ["codecommit:GitPull", "codecommit:GitPush"],
-      "Effect": "Allow",
-      "Sid": "gitpush",
-      "Resource": ["${aws_codecommit_repository.secrets_repo.arn}"]
-    },
-    {
-      "Action": ["kms:Encrypt", "kms:Decrypt"],
-      "Effect": "Allow",
-      "Sid": "decrypt",
-      "Resource": ["${aws_kms_key.sops_key.arn}"]
-    }
-  ]
-}
-EOF
+data "aws_iam_policy_document" "repo_encrypt" {
+  statement {
+    sid = "1"
+    actions = [
+      "codecommit:GitPull",
+      "codecommit:GitPush"
+    ]
+    resources = [
+      aws_codecommit_repository.secrets_repo.arn
+    ]
+  }
+
+  statement {
+    sid = "2"
+    actions = [
+      "kms:Encrypt",
+      "kms:Decrypt"
+    ]
+    resources = [
+      aws_kms_key.sops_key.arn
+    ]
+  }
 }
 
-resource "aws_iam_role" "secrets_repo_encrypt_role" {
+resource "aws_iam_policy" "repo_encrypt" {
   name = "${var.repo_name}-encrypt"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "AWS": "arn:aws:iam::454929164628:user/yuvipanda"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  policy = data.aws_iam_policy_document.repo_encrypt.json
 }
 
-resource "aws_iam_role_policy_attachment" "secrets_repo_encrypt_role_attach" {
-  role       = aws_iam_role.secrets_repo_encrypt_role.name
-  policy_arn = aws_iam_policy.secrets_repo_encrypt_policy.arn
+data "aws_iam_policy_document" "repo_encrypt_assumptions" {
+  statement {
+    principals {
+      type = "AWS"
+      identifiers = var.encrypt_allowed_users
+    }
+    actions = [
+      "sts:AssumeRole"
+    ]
+
+  }
+}
+
+resource "aws_iam_role" "repo_encrypt" {
+  name = "${var.repo_name}-encrypt"
+  assume_role_policy = data.aws_iam_policy_document.repo_encrypt_assumptions.json
+}
+
+resource "aws_iam_role_policy_attachment" "repo_encrypt" {
+  role       = aws_iam_role.repo_encrypt.name
+  policy_arn = aws_iam_policy.repo_encrypt.arn
 }
