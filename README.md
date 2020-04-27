@@ -134,6 +134,33 @@ Now that we have a role for setting up KMS + CodeCommit, we can do so!
    It should produce a `.sops.yaml` file that can be used with your new repo for appropriate
    encryption with [sops](https://github.com/mozilla/sops).
 
+### Setting up repo to be used with sops
+
+Once your CodeCommit repo has been set up, you need to add the `.sops.yaml` file.
+This tells `sops` which KMS keys to use for encryption and decryption.
+
+1. [Get a copy of the repo](#Getting a copy of the repo). `git` will
+   give you a warning about the repo being empty. This is expected.
+
+2. Copy the `.sops.yaml` file produced in the earlier stage into the
+   freshly cloned repo.
+
+3. Add `.sops.yaml` to the git repo and make a commit.
+
+   ```bash
+   git add .sops.yaml
+   git commit -m "Added initial .sops.yaml" file
+   ```
+
+4. Push the new commit to the CodeCommit repository.
+
+   ```bash
+   awsudo <arn-of-encrypt-permission-role> git push origin master
+   ```
+
+5. Tada! Your CodeCommit git repo has now been initialized to
+   be used with `sops`. You can now start using it to store
+   secrets.
 
 ## Using a repo for secrets
 
