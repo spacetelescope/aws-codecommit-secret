@@ -77,7 +77,8 @@ Here is how you can set up these roles.
       setup. Make sure to add your own ARN here. *Required*
 
 4. Assume a role that has permissions to create new IAM resources. [awsudo]
-   (https://github.com/makethunder/awsudo) is a wonderful tool for executing
+   (https://github.com/meltwater/awsudo
+   ) is a wonderful tool for executing
    commands with an assumed role in a clear fashion. If your organization
    has a role with, say, an ARN of `arn:aws:iam::162808325377:role/IAMRoleAdministrator`,
    you can then assume the role and execute terraform module with:
