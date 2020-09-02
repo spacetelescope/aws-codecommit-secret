@@ -25,11 +25,14 @@ resource "aws_iam_policy" "repo_decrypt" {
   policy = data.aws_iam_policy_document.repo_decrypt.json
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "repo_decrypt_assumptions" {
   statement {
     principals {
       type = "AWS"
-      identifiers = var.decrypt_allowed_users
+      #identifiers = var.decrypt_allowed_users
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/jupyterhub-deploy"]
     }
     actions = [
       "sts:AssumeRole"

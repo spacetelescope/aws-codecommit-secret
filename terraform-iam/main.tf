@@ -15,7 +15,8 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
       "codecommit:DeleteRepository",
       "codecommit:GetRepository",
       "codecommit:ListRepositories",
-      "codecommit:ListTagsForResource"
+      "codecommit:ListTagsForResource",
+      "codecommit:TagResource"
     ]
 
     resources = ["*"]
@@ -63,16 +64,17 @@ resource "aws_iam_policy" "codecommit_secrets_setup_policy" {
   policy = data.aws_iam_policy_document.codecommit_secrets_setup_policy_document.json
 }
 
+data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "codecommit_secrets_role_assumption_policy_document" {
   statement {
-    principals {
-      type = "AWS"
-      identifiers = var.allowed_users
-    }
     actions = [
       "sts:AssumeRole"
     ]
+    principals {
+      type = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/jupyterhub-deploy"]
+    }
   }
 }
 

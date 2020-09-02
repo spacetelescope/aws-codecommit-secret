@@ -9,3 +9,11 @@ variable "repo_name" {
 variable "allowed_users" {
   default = []
 }
+
+variable "aws_secrets_account_id" {
+  default = ""
+}
+
+variable "aws_secrets_account_role" {
+  default = ""
+}

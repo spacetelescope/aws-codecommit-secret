@@ -13,3 +13,8 @@ variable "decrypt_allowed_users" {
 variable "encrypt_allowed_users" {
   default = []
 }
+
+variable "owner_tag" {
+  default = ""
+}
+
