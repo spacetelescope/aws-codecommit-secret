@@ -25,3 +25,7 @@ variable "encrypt_allowed_roles" {
 variable "decrypt_allowed_roles" {
   default = []
 }
+
+variable "owner_tag" {
+  default = ""
+}

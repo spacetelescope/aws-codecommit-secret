@@ -11,10 +11,10 @@ provider "template" {
   version = "~> 2.1"
 }
 
-#resource "aws_codecommit_repository" "secrets_repo" {
-#  repository_name = var.repo_name
-#  description     = "kms encrypted secrets for JupyterHub deployment"
-#  tags            = {
-#    Owner = var.owner_tag
-#  }
-#}
+resource "aws_codecommit_repository" "secrets_repo" {
+  repository_name = var.repo_name
+  description     = "kms encrypted secrets for JupyterHub deployment"
+  tags            = {
+    Owner = var.owner_tag
+  }
+}
