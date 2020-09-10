@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "repo_encrypt_assumptions" {
   statement {
     principals {
       type = "AWS"
-      #identifiers = var.encrypt_allowed_users
+      # TODO: pull this out into the vars file
       identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/jupyterhub-deploy"]
     }
     actions = [

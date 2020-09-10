@@ -25,8 +25,6 @@ resource "aws_iam_policy" "repo_decrypt" {
   policy = data.aws_iam_policy_document.repo_decrypt.json
 }
 
-data "aws_caller_identity" "current" {}
-
 data "aws_iam_policy_document" "repo_decrypt_assumptions" {
   statement {
     principals {

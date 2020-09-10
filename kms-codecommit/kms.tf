@@ -10,3 +10,6 @@ creation_rules:
     kms: "${aws_kms_key.sops_key.arn}"
 EOF
 }
+
+# upload .sops.yaml to S3; it will be downloaded later in the process
+# ...
