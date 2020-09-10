@@ -29,8 +29,7 @@ data "aws_iam_policy_document" "repo_decrypt_assumptions" {
   statement {
     principals {
       type = "AWS"
-      #identifiers = var.decrypt_allowed_users
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/jupyterhub-deploy"]
+      identifiers = var.decrypt_allowed_roles
     }
     actions = [
       "sts:AssumeRole"
