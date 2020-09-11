@@ -1,10 +1,14 @@
 region = "us-east-1"
-repo_name = "<change-this>"
 
-encrypt_allowed_roles = [_
-  "arn:aws:iam::<account-id>:role/<deployment-name-secrets-encrypt>"
+repo_name = "<deployment-name>-secrets"
+sops_s3_bucket = "<deployment-name>-sops-config"
+sops_s3_source= ".sops.yaml"
+sops_s3_key = ".sops.yaml"
+
+encrypt_allowed_roles = [
+  "arn:aws:iam::<deployment-name>:role/jupyterhub-deploy"
 ]
 
-decrypt_allowed_users = [
-  "arn:aws:iam::<account-id>:role/<deployment-name-secrets-decrypt>"
+decrypt_allowed_roles = [
+  "arn:aws:iam::<account-id>:role/jupyterhub-deploy"
 ]

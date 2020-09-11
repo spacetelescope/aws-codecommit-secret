@@ -1,5 +1,6 @@
 region = "us-east-1"
-repo_name = "yuvi-secrets-repo"
-allowed_users = [
-  "arn:aws:iam::162808325377:user/yuvipanda"
+repo_name = "<deployment-name>-secrets-repo"
+
+allowed_roles = [
+  "arn:aws:iam::<account-id>:role/jupyterhub-deploy"
 ]
