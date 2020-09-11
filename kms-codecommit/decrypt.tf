@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "repo_decrypt_assumptions" {
   statement {
     principals {
       type = "AWS"
-      identifiers = var.decrypt_allowed_users
+      identifiers = var.decrypt_allowed_roles
     }
     actions = [
       "sts:AssumeRole"

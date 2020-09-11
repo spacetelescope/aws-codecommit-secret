@@ -6,10 +6,26 @@ variable "repo_name" {
   default = "<change-this-in-tfvars>"
 }
 
-variable "decrypt_allowed_users" {
+variable "sops_s3_bucket" {
+  default = "<change-this-in-tfvars>"
+}
+
+variable "sops_s3_key" {
+  default = "<change-this-in-tfvars>"
+}
+
+variable "sops_s3_source" {
+  default = "<change-this-in-tfvars>"
+}
+
+variable "encrypt_allowed_roles" {
   default = []
 }
 
-variable "encrypt_allowed_users" {
+variable "decrypt_allowed_roles" {
   default = []
+}
+
+variable "owner_tag" {
+  default = ""
 }

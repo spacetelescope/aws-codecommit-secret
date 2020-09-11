@@ -6,6 +6,6 @@ variable "repo_name" {
   default = "<change-this-in-your-tfvars-file>"
 }
 
-variable "allowed_users" {
-  default = []
+variable "allowed_roles" {
+  default = ["<change-this-in-your-tfvars-file>"]
 }

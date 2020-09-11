@@ -10,3 +10,20 @@ creation_rules:
     kms: "${aws_kms_key.sops_key.arn}"
 EOF
 }
+
+
+# upload .sops.yaml to S3; it will be downloaded later in the process
+
+resource "aws_s3_bucket" "sops-config" {
+  bucket = var.sops_s3_bucket
+  acl    = "private"
+  tags = {
+    Env =  "sandbox"
+  }
+}
+
+resource "aws_s3_bucket_object" "sops-bucket" {
+  bucket = var.sops_s3_bucket
+  key    = var.sops_s3_key
+  source = var.sops_s3_source
+}

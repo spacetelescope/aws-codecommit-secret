@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "repo_encrypt_assumptions" {
   statement {
     principals {
       type = "AWS"
-      identifiers = var.encrypt_allowed_users
+      identifiers = var.encrypt_allowed_roles
     }
     actions = [
       "sts:AssumeRole"
