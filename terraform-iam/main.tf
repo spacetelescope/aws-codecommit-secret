@@ -16,7 +16,9 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
       "codecommit:GetRepository",
       "codecommit:ListRepositories",
       "codecommit:ListTagsForResource",
-      "codecommit:TagResource"
+      "codecommit:TagResource",
+      "codecommit:GitPush",
+      "codecommit:GitPull"
     ]
 
     resources = ["*"]
