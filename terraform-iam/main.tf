@@ -16,7 +16,9 @@ data "aws_iam_policy_document" "codecommit_secrets_setup_policy_document" {
       "codecommit:GetRepository",
       "codecommit:ListRepositories",
       "codecommit:ListTagsForResource",
-      "codecommit:TagResource"
+      "codecommit:TagResource",
+      "codecommit:GitPush",
+      "codecommit:GitPull"
     ]
 
     resources = ["*"]
@@ -155,7 +157,8 @@ resource "aws_iam_policy" "codecommit_secrets_setup_policy" {
   policy = data.aws_iam_policy_document.codecommit_secrets_setup_policy_document.json
 }
 
-data "aws_caller_identity" "current" {}
+# TODO: I think this can be removed...
+#data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "codecommit_secrets_role_assumption_policy_document" {
   statement {
